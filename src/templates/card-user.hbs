@@ -1,0 +1,29 @@
+{{#each this}}
+<li class="card user-card">
+  <img src="https://source.unsplash.com/250x250/?random={{id}}&avatar,man,boy,girl,family" alt="" class="user-avatar">
+  <h3 class="user-title">
+    {{name}}
+  </h3>
+  <hr>
+  <ul>
+    <li>Email: {{email}}</li>
+    <li>Phone: {{phone}}</li>
+  </ul>
+  <hr>
+  <div class="user-desc">
+    Books:
+    <ul>
+      {{#each readedBooks}}
+        <li>{{title}}</li>
+      {{/each}}
+    </ul>
+    <hr>
+    Rooms:
+    <ul>
+      {{#each room}}
+        <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</li>
+{{/each}}
