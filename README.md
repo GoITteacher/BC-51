@@ -1,1 +1,1 @@
-# Hi everyone
+# JS Bootcamp
