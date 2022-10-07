@@ -1,192 +1,131 @@
-// users, posts, comments, albums, photos
-//Посилання на необхідні елементи
-const refs = {
-  inputUserFilter: document.querySelector('#user-filter'),
-  outputUserFilter: document.querySelector('#outputInput'),
+let users = [];
+fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(json => (users = json));
+
+setTimeout(() => {
+  users = users.map((user, index) => {
+    user.avatar = `https://source.unsplash.com/100x120/?random=${index}&avatar,person,boy,girl`;
+    return user;
+  });
+  console.log(users);
+  loadData();
+  MainFunction();
+}, 1000);
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Object references
+let refs = {
   userList: document.querySelector('.js-list-user'),
-  postList: document.querySelector('.js-list-post-body'),
-  btnOpenModal: document.querySelector('#open-modal'),
-  backdrop: document.querySelector('.backdrop'),
-  modalForm1: document.querySelector('.js-modal-1'),
-  modalForm2: document.querySelector('.js-modal-2'),
-  commentsListEl: document.querySelector('.js-list-post-comment'),
+  userCard: document.querySelector('.js-user-card'),
+  backDrop: document.querySelector('.js-backdrop'),
+  userInfo: document.querySelector('.js-user-info'),
+  firstModal: document.querySelector('.js-user-info'),
+  secondModal: document.querySelector('.js-form-regestration'),
 };
 
-// Завантажую(Відображаю на сторінці) список користувачів
-showFilteredUsers(users);
-
-//Створюю прослуховувач події на інпуті
-refs.inputUserFilter.addEventListener('input', _.debounce(onInputChange, 1000));
-// Колбек для прослуховувача (Фільтрує мавсссив користувачів)
-function onInputChange(event) {
-  const filteredUsers = users.filter(user => {
-    return user.name.includes(event.target.value);
-  });
-
-  //Відображаємо відфільтрованний массив коритсувачів
-  showFilteredUsers(filteredUsers);
-}
-
-//Фукнція відображенння отриманого массиву коритсувачів
-function showFilteredUsers(users) {
-  let result = users
-    .map(use => {
-      return `
-      <li class="user-card" data-idUser="${use.id}">
-       ${use.name}
-      </li>
-      `;
-    })
-    .join(''); // Перетворення массиву на розмітку ХТМЛ
-
-  refs.userList.innerHTML = result;
-  refs.btnOpenModal = document.querySelector('#open-modal');
-}
-
-// Прослуховувач подій клік на Списку користувачів
-refs.userList.addEventListener('click', onUserClick);
-//Колбек для прослуховувача
-function onUserClick(event) {
-  if (event.target.nodeName === 'LI') {
-    //Якщо клацнули по карточці Юзера
-
-    //Отримуємо айді цього юзера
-    let idUser = event.target.dataset.iduser;
-
-    // Відображаем пости обраного юзера
-    if (event.ctrlKey) updateListAlbums(idUser);
-    else updateListPosts(idUser);
-  }
-}
-
-// Функція відображення Альбомів переданого юзера
-function updateListAlbums(idUser) {
-  //Фільтруємо массив постів, залишаючи лише необхідні
-  const filteredPosts = albums.filter(({ userId }) => {
-    return userId === Number(idUser);
-  });
-
-  // Генеруємо массив з розміткою альбомів (елемент)
-  const htmlPosts = filteredPosts.map(({ id, title }) => {
+// Функція завантажує дані про користувачів до списку
+function loadData() {
+  let result = users.map(user => {
     return `
-        <li class="box post-item" data-id="${id}">
-            <b>${title}</b>
-        </li>`;
+<li class="user-card js-user-card" data-id=${user.id}>
+  <div class="snip1344">
+  <img src="https://source.unsplash.com/100x100/?random=${user.id}&avatar,person,boy,girl" alt="profile-sample1" class="background"/>
+  <img src="https://source.unsplash.com/100x100/?random=${user.id}&avatar,person,boy,girl" alt="profile-sample1" class="profile"/>
+  <figcaption>
+    <h3>${user.name}<span>${user.phone}</span></h3>
+      <div>@${user.username}</div>
+  </figcaption>
+</div>
+
+</li>
+`;
   });
-
-  // Отримуємо розмітку у вигляді цільного рядка
-  let result = htmlPosts.join('');
-
-  // Відображаємо цю розмітку на сторінці
-  refs.postList.innerHTML = result;
+  refs.userList.innerHTML = result.join('');
 }
 
-// Функція відображення Постів переданого юзера (Все як і в верхній функції)
-function updateListPosts(idUser) {
-  const filteredPosts = posts.filter(({ userId }) => {
-    return userId === Number(idUser);
-  });
-  const htmlPosts = filteredPosts.map(({ title, body, id }) => {
-    return `
-        <li class="box post-item" data-id='${id}'>
-            <b>${title}</b>
-            <p>${body}</p>
-        </li>`;
-  });
+//Головна функція яка все об'єднала
+function MainFunction() {
+  ////////////////////////////////////////////////////////////////////
 
-  let result = htmlPosts.join('');
-  refs.postList.innerHTML = result;
-}
+  // Створюємо додаткові посилання на необхідні елементи
+  refs.userCard = document.querySelector('.js-list-user');
 
-// Додавання прослуховувача події на список постів (щоб відкривати модалку)
-refs.postList.addEventListener('click', onListItemClick);
+  // Додаємо слухачі подій на елементи
+  refs.userCard.addEventListener('click', onUserCardClick); // Відкриття модалки при кліку на Юсера
+  refs.backDrop.addEventListener('click', onbackDropToClose); // Закриття модалки при  кліку на бекдроп
 
-// Колбек для прослуховувача
-function onListItemClick(event) {
-  // Перевірка якщо клік саме по альбому
-  let myTarget = event.target;
-  if (
-    !event.target.matches('.list-post-body') &&
-    !event.target.matches('.post-item')
-  )
-    myTarget = event.target.closest('.post-item');
+  // Інструкція відкриття модалки
+  function onUserCardClick(e) {
+    document.body.classList.add('show-modal');
 
-  if (myTarget.nodeName === 'LI') {
-    let albumId = myTarget.dataset.id;
-
-    if (myTarget.children.length === 1) {
-      // Додаю необхідні класи для відображення модалки
-      document.body.classList.add('show-modal');
-      refs.modalForm2.classList.add('visible');
-      refs.modalForm1.classList.remove('visible');
-
-      // Отримую данні обраного альбому
-      let title = myTarget.children[0].textContent;
-
-      // Викликаю функцію відобрадення альбому
-      loadAlbumDataToModal(title, albumId);
+    if (users.length == 0) {
+      // якщо коритсувачів немає в массиві (порожній список)
+      refs.userInfo.classList.remove('visible');
+      refs.secondModal.classList.add('visible');
     } else {
-      showComments(albumId);
+      //якщо користувачі є (список НЕ порожній)
+
+      refs.userInfo.classList.add('visible');
+      refs.secondModal.classList.remove('visible');
+
+      // Отримую посилання на головний елемент юзера (тег - ЛІ)
+      let myTarget = e.target;
+      while (myTarget.nodeName !== 'LI') {
+        myTarget = myTarget.parentNode;
+      }
+      let id = myTarget.dataset.id; // отримую АйДі
+
+      let user = users.find(elem => elem.id == id); // Отримую юзера з массиву юзерів (лише того у якого задовільняє айді)
+
+      loadUserData(user); //Викликаю функцію яка завантаже до модального вікна інформацію про Юзера
+
+      // отримую посилання на кнопку для видалення юзера у модальному вікні
+      refs.inputDel = document.querySelector('.js-delete-user-btn');
+
+      //Додаю до цієї кнопки прослуховувач події Клік
+      refs.inputDel.addEventListener('click', onCardDelete);
+
+      // Описую коллбек для прослуховувача події у "inputDel"
+      function onCardDelete() {
+        // Отримую відфільтрованний массив користувачів які задовільняють умову
+        users = users.filter(user => user.id != id);
+
+        // Після видалення юзеру приховую модальне вікно
+        document.body.classList.remove('show-modal');
+
+        //Викликаю функцію рендера юзерів у списку за оновленним массивом юзерів
+        loadData();
+      }
     }
   }
-}
 
-function showComments(postId) {
-  let filteredComments = comments.filter(comment => {
-    return comment.postId == postId;
-  });
-  refs.commentsListEl.innerHTML = filteredComments
-    .map(({ body, email }) => {
-      return `
-    <li class="comment-item">
-            <i>${email}</i>
-            <p>${body}</p>
-          </li>
-    `;
-    })
-    .join('');
-}
+  // Функція яка завантажує данні про Юзера до модального вікна
+  function loadUserData(user) {
+    refs.userInfo.innerHTML = `
+    <div class="box box-gorizont">
+    <img src="${user.avatar}" alt="avatar">
+    <div class="box">
+        <h1>${user.name}</h1>
+        ${user.email},<br> ${user.website},<br> ${user.phone}
+        <br>
+        <input type="button" value="Delete" class="js-delete-user-btn">
+    </div>
+</div>
+<div class="box">
+${Object.keys(user.address)
+  .map(key => {
+    if (key === 'geo') return '';
+    return key + ': ' + user.address[key] + '<br>';
+  })
+  .join('')}
+</div>`;
+  }
 
-// Фукнція відображення альбому в модальному вікні
-function loadAlbumDataToModal(title, albumId) {
-  let filteredListPhoto = photos.filter(photo => {
-    return photo.albumId == Number(albumId);
-  });
-
-  refs.modalForm2.children[0].textContent = title;
-  refs.modalForm2.children[1].innerHTML = filteredListPhoto
-    .map(elem => {
-      return `<img class='list-photo-item lazyload' src="${elem.thumbnailUrl}" data-src="${elem.url}" width="100" height="100">`;
-    })
-    .join('');
-}
-
-// Прослуховувач подій на кнопці для створення нового юзера (Відкриває модальне вікно реєстрації)
-refs.btnOpenModal.addEventListener('click', event => {
-  event.stopPropagation(); //Зупиняє всплиття події на верх (до батька не дійде)
-  document.body.classList.add('show-modal');
-  refs.modalForm1.classList.add('visible');
-  refs.modalForm2.classList.remove('visible');
-});
-
-// Прослуховувач подій на бекдроп для закриття модалок
-refs.backdrop.addEventListener('click', event => {
-  //якщо клацаю за межами модалки то
-  if (event.target === event.currentTarget)
-    // закриваю модалку видаливши клас
-    document.body.classList.remove('show-modal');
-});
-
-refs.commentsListEl.addEventListener('mouseover', onCommentsListMouseOver);
-refs.commentsListEl.addEventListener('mouseout', onCommentsListMouseOut);
-
-function onCommentsListMouseOver(event) {
-  console.log(refs.postList.style.height);
-  refs.postList.style.height = '100px';
-  event.currentTarget.style.height = '300px';
-}
-
-function onCommentsListMouseOut(event) {
-  refs.postList.style.height = '300px';
-  event.currentTarget.style.height = '100px';
+  // Колбек функція для закриття модального вікна
+  function onbackDropToClose(eve) {
+    if (eve.currentTarget === eve.target)
+      document.body.classList.remove('show-modal');
+  }
+  ///////////////////////////////////////////////////////////////////
 }

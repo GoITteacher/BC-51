@@ -1,9 +1,3 @@
-#backBtn{
-  position: fixed;
-  left:10px;
-  top:10px;
-}
-
 .box{
     display: flex;
     flex-direction: column;
@@ -23,93 +17,20 @@
     -moz-background-clip: padding-box;
     background-clip: padding-box;
 
+    cursor: pointer;
 }
 
 .user-card{
     list-style-type: none;
     padding: 0;
     margin:10px;
-    background-color: tomato;
-    width: 130px;
-    min-height: 70px;
-    border-radius: 10px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
 }
 
 .list-user{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  height: 300px;
-  height: 300px;
-  width: 25vw;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
-.list-posts{
-  width: 50vw;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-
-.list-post-body{
-  height: 300px;
-  overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  width: 100%;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.list-post-comment{
-  height: 100px;
-  overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  width: 100%;
-  padding: 0;
-}
-
-.list-photo{
-  overflow-y: auto;
-  max-height: 60%;
-  justify-content: start;
-}
-
-.list-photo-item{
-  width: 300px;
-  height: 300px;
-  border-radius: 14px;
-  margin: 10px;
-}
-
-.post-item{
-  height: 200px;
-  width:200px;
-  cursor: pointer;
-}
-
-.post-item p{
-  max-height: 100px;
-  overflow-y: auto;
-}
-
-.comment-item{
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid tomato;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 
@@ -138,9 +59,6 @@ body.show-modal .backdrop{
 }
    
 .modal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding:24px;
     width: 60vw;
     height: 60vh;
@@ -155,6 +73,7 @@ body.show-modal .backdrop{
     background-clip: padding-box;
     cursor: pointer;
 
+    overflow-y: auto;
     display: none;
     z-index: 10;
 }
@@ -163,8 +82,7 @@ body.show-modal .backdrop{
     display: block;
 }
 
-.box-horizontal{
-  display: flex;
+.box-gorizont{
   flex-direction: row;
 }
 
@@ -309,4 +227,9 @@ body{
 .snip1344.hover .background {
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
+}
+
+*[alt=avatar]{
+  border-radius: 10px;
+  transform: scale(1.5);
 }

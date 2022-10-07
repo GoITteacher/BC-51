@@ -4,69 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="userstyles.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Users</title>
+    <link rel="stylesheet" href="user-style.css">
 </head>
 <body>
-    <input type="button" value="Main Menu" onclick="history.back()" id="backBtn">
+    
 
-    <div class="box-horizontal">
-      <div class="box">
-        <label>
-          Filter: <input type="text" value="" id="user-filter">
-        </label>
-        <ul class="list-user js-list-user">
-        </ul>
-        <li class="user-card blue" id="open-modal">
-          New USER
-      </li>
-      </div>
-      <div class="box list-posts">
-        <ul class="list-post-body js-list-post-body">
-        </ul>
-        <ul class="list-post-comment js-list-post-comment">
-        </ul>
-      </div>
-    </div>
+
+    <ul class="box list-user js-list-user">
+        
+    </ul>
 
     <div class="backdrop js-backdrop">
-        <form class="modal visible form js-modal-1">
-          <div class="title">Welcome</div>
-          <div class="subtitle">Let's create your account!</div>
-          <div class="input-container ic1">
-            <input id="firstname" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="firstname" class="placeholder">First name</label>
-          </div>
-          <div class="input-container ic2">
-            <input id="lastname" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="lastname" class="placeholder">Last name</label>
-          </div>
-          <div class="input-container ic2">
-            <input id="email" class="input" type="text" placeholder=" " />
-            <div class="cut cut-short"></div>
-            <label for="email" class="placeholder">Email</label>
-          </div>
-          <button type="text" class="submit">Create User</button>
-        </form>
-
-        <div class="modal js-modal-2">
-          <h1>album name</h1>
-          <div class="box list-photo js-list-photo">
+        <div class="modal visible js-user-info box">
             
-          </div>
+        </div>
+
+        <div class="modal js-form-regestration">
+            <form>
+                <h1>USER Form</h1>
+                <label>
+                    Login:___
+                    <input type="text" name="login" required>
+                </label><br>
+                <label>
+                    Password:
+                    <input type="password" name="password" required>
+                </label><br>
+
+                <label>
+                    Name:___
+                    <input type="text" name="name" required>
+                </label><br>
+                <label>
+                    Email:___
+                    <input type="email" name="email" required>
+                </label><br>
+                <h3>Address</h3>
+                <label>
+                    City:
+                    <input type="text" name="city" required>
+                </label>
+                <label>
+                    Street:
+                    <input type="text" name="street" required>
+                </label><br><br>
+
+            
+                <input type="submit" value="Regestration">
+            </form>
         </div>
     </div>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-    integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <script src="./scripts/05-users-data.js"></script>
-    <script src="./scripts/05-users-example.js"></script>
+
+    <script src="scripts/05-users-example.js"></script>
 </body>
 </html>
