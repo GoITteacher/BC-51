@@ -1,13 +1,13 @@
 function f() {
   console.log(this);
   const foo = () => {
-    // this.x = 5;
+    this.x = 5;
 
     (function () {
       console.log(this);
     })();
 
-    // console.log(this);
+    console.log(this);
   };
 
   return foo;
