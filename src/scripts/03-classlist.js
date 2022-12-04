@@ -1,13 +1,6 @@
 let myBtn = document.querySelector('#testButton');
 let listItem = document.querySelector('.js-list');
 
-const callback = () => {
-  console.log(listItem.classList.replace('js-list', 'test'));
-  console.log(listItem.classList.value);
-};
-
-//myBtn.addEventListener('click', callback);
-
 /* 
 У властивості classList зберігається об'єкт з методами для роботи з класами елемента.
 
@@ -21,14 +14,3 @@ elem.classList.replace(oldClass, newClass) - замінює існуючий к�
 /* 
 Властивість style
 */
-myBtn.addEventListener('click', () => {
-  if (myBtn.classList.contains('data-true')) {
-    myBtn.style.backgroundColor = 'black';
-    myBtn.style.borderRadius = '10px';
-  } else {
-    myBtn.style.backgroundColor = 'red';
-    myBtn.style.borderRadius = '5px';
-  }
-
-  myBtn.classList.toggle('data-true');
-});

@@ -83,28 +83,3 @@ const cars = [
     onSale: false,
   },
 ];
-
-let count = 0;
-let totalPrice = 0;
-
-let result = cars.reduce((result, element) => {
-  count += element.amount;
-  totalPrice += element.price;
-
-  return (
-    result +
-    `
-        <tr>
-            <td>${element.make}</td>
-            <td>${element.model}</td>
-            <td>${element.type}</td>
-            <td>${element.amount}</td>
-            <td>${element.price}</td>
-            <td>${element.onSale}</td>
-        </tr>
-  `
-  );
-}, '');
-
-list.insertAdjacentHTML('afterbegin', result);
-console.log('test');

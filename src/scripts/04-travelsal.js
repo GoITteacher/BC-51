@@ -3,16 +3,6 @@ let list = document.querySelector('ul');
 let liItem1 = list.querySelector('li.active');
 let liItem2 = list.querySelector(':scope > li.active');
 
-console.log(liItem1);
-console.log(liItem2);
-
-const callback = () => {
-  const elem = list.firstElementChild;
-  console.log(elem.closest('li'));
-};
-
-myBtn.addEventListener('click', callback);
-
 /* 
 elem.parentNode - вибере батьківський elem.
 elem.childNodes - псевдомасив, зберігає всі дочірні елементи, включно з текстовими.
