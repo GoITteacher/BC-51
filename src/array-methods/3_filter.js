@@ -10,10 +10,4 @@
 
 */
 
-// let array = [1, 3, 56, 1, 5, 78, 2, 6];
-
-// let filteredArray = array.filter((value, index, array) => {
-//   return (index + 1) % 3 === 0;
-// }).filter().filter();
-
-// console.log(filteredArray);
+let array = [1, 3, 56, 1, 5, 78, 2, 6];

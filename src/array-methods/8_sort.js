@@ -89,12 +89,3 @@ let cars = [
     onSale: false,
   },
 ];
-
-// let sortArray = cars.sort((a, b) => {
-//   return a.model.localeCompare(b.model);
-// });
-
-// console.table(sortArray);
-
-// let res = 'Testaa'.localeCompare('testab');
-// console.log(res);
