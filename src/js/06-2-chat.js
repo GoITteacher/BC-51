@@ -9,6 +9,3 @@
 const isOnline = true;
 const isFriend = true;
 const isDnd = true;
-
-const canOpenChat = isOnline && isFriend && !isDnd;
-console.log('Можно открыть чат? ', canOpenChat);
