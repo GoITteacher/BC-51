@@ -9,35 +9,6 @@
 let stars = 1;
 let price;
 
-switch (stars) {
-  case 1:
-    price = '20$';
-    break;
-  case 2:
-    price = '30$';
-    break;
-  case 3:
-    price = '50$';
-    break;
-  case 4:
-    price = '70$';
-    break;
-  case 5:
-    price = '120$';
-    break;
-  default:
-    console.log('Такого кол-ва звезд нет');
-}
-
-if (price) {
-  console.log(`Вартість отелю - ${price}`);
-}
-
-/*
- * Напиши скрипт выбора стоимости отеля по кол-ву звёзд.
- * 1,2 - 20$, 3,4 - 30$, 5 - 120$
- */
-
 /*
  * Напиши скрипт выбора опции доставки товара.
  * Опция хранится в переменной option: 1 - самовывоз, 2 - курьер, 3 - почта
