@@ -20,6 +20,8 @@
   1. Scroll to the bottom of the page
   1. У "Workflow permissions" потрібно поставити галочку "Read and Write
      premission"
+  1. також потрібно поставити галочку біля "Allow GitHub Actions to create
+     ....."
 
 ## Project
 
