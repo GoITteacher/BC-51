@@ -1,6 +1,7 @@
 # Basic
 
 ## .posthtmlrc
+
 ```json
 {
   "plugins": {
@@ -10,38 +11,42 @@
   }
 }
 ```
+
 ---
+
 ## .parcelrc
+
 ```json
 {
-  "extends": [
-    "@parcel/config-default"
-  ],
-  "reporters": [
-    "...",
-    "parcel-reporter-clean-dist"
-  ]
+  "extends": ["@parcel/config-default"],
+  "reporters": ["...", "parcel-reporter-clean-dist"]
 }
 ```
+
 ---
+
 ## .htmlnanorc
+
 ```json
 {
   "minifySvg": false
 }
 ```
+
 ---
+
 ## .sassrc
+
 ```json
 {
-  "includePaths": [
-    "node_modules"
-  ]
+  "includePaths": ["node_modules"]
 }
 ```
+
 ---
 
 # Example package.json
+
 ```json
 {
   "name": "project_name",
