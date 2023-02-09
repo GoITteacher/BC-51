@@ -15,6 +15,11 @@
   1. Settings->Branches->
   1. DefaultBranch -> SwitchToAnotherBranch
   1. Потрібно натиснути на дві стрілочки і змінити main на dev
+- Change Setting 3
+  1. Settings->Actions->General
+  1. Scroll to the bottom of the page
+  1. У "Workflow permissions" потрібно поставити галочку "Read and Write
+     premission"
 
 ## Project
 
