@@ -1,3 +1,36 @@
+const country = 'Canada';
+
+/* switch (country) {
+  case 'Canada':
+    console.log('Sale - 10%');
+    break;
+  case 'Ukraine':
+    console.log('Sale - 20%');
+    break;
+
+  default:
+    console.log('Sale - 5%');
+    break;
+} */
+
+/* switch (country) {
+  case 'Canada':
+    console.log('Sale - 10%');
+    break;
+
+  case 'Ukraine':
+  case 'Polsha':
+  case 'Egypt':
+    console.log('Sale - 20%');
+    break;
+
+  default:
+    console.log('Sale - 5%');
+    break;
+}
+
+console.log('END'); */
+
 /*
  * Напиши скрипт выбора стоимости отеля по кол-ву звёзд.
  * 1 - 20$, 2 - 30$, 3 - 50$, 4 - 70$, 5 - 120$
@@ -6,8 +39,33 @@
  * 'Такого кол-ва звезд нет'
  */
 
-let stars = 1;
+let stars = 10;
 let price;
+
+switch (stars) {
+  case 1:
+    price = 20;
+    break;
+  case 2:
+    price = 30;
+    break;
+  case 3:
+    price = 50;
+    break;
+  case 4:
+    price = 70;
+    break;
+  case 5:
+    price = 120;
+    break;
+  default:
+    console.log('Такого кол-ва звезд нет');
+    break;
+}
+
+if (price) {
+  console.log(`Ціна - ${price}$`);
+}
 
 /*
  * Напиши скрипт выбора опции доставки товара.
