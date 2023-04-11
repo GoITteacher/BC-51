@@ -13,11 +13,13 @@ const playlist = {
   name: 'Мой супер плейлист',
   rating: 5,
   tracks: ['трек-1', 'трек-2', 'трек-3'],
+
   changeName(newName) {
+    this.name = newName;
     console.log('this внутри changeName: ', this);
   },
   addTrack(track) {
-    this.tracks.push(track);
+    if (!this.tracks.includes(track)) this.tracks.push(track);
   },
   updateRating(newRating) {
     this.rating = newRating;
@@ -26,7 +28,7 @@ const playlist = {
     return this.tracks.length;
   },
 };
-/* 
+
 console.log(playlist.getTrackCount());
 
 playlist.changeName('Новое имя');
@@ -40,4 +42,3 @@ console.log(playlist.getTrackCount());
 playlist.updateRating(4);
 
 console.log(playlist);
- */

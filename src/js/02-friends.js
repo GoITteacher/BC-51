@@ -6,7 +6,7 @@ const friends = [
   { name: 'Mango', online: false },
   { name: 'Kiwi', online: true },
   { name: 'Poly', online: false },
-  { name: 'Ajax', online: false },
+  { name: 'Ajax', online: true },
 ];
 
 console.table(friends);
@@ -15,34 +15,48 @@ console.table(friends);
  * Ищем друга по имени
  */
 
-let friendName = 'Mango';
+function findFriend(friends, name) {
+  for (const user of friends) {
+    if (user.name === name) {
+      return true;
+    }
+  }
 
-console.log('---------------');
-for (let friend of friends) {
-  if (friend.name === friendName) console.log(friend);
+  return false;
 }
+
+console.log(findFriend(friends, 'awd'));
 
 /*
  * Получаем имена всех друзей
  */
 
-let friendsName = [];
-for (let friend of friends) {
-  friendsName.push(friend.name);
+function getNames(friends) {
+  const arr = [];
+  for (const user of friends) {
+    arr.push(user.name);
+  }
+
+  console.log(arr);
 }
-console.log(friendsName);
+
+getNames(friends);
 
 /*
  * Получаем имена только друзей которые онлайн
  */
 
-let onlineFriendsName = [];
-let offlineFriendsName = [];
-for (let friend of friends) {
-  if (friend.online) onlineFriendsName.push(friend.name);
-  else offlineFriendsName.push(friend.name);
+function getNamesOnline(friends) {
+  const online = [];
+  const offline = [];
+  for (const user of friends) {
+    if (user.online) online.push(user.name);
+    else offline.push(user.name);
+  }
+  console.log(online, offline);
 }
-console.log(onlineFriendsName);
-console.log(offlineFriendsName);
+
+getNamesOnline(friends);
+
 // создать 2 массива онлайн и офлайн?
 // если тру - в первый, если нет - во второй
