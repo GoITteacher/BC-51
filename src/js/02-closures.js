@@ -7,3 +7,23 @@
  * это называется «замыкание».
 / 
 */
+
+function father(name) {
+  const test = (x, y) => {
+    console.log(name);
+    console.log(x + y);
+  };
+
+  return test;
+}
+
+const calc1 = father('Vasya');
+const calc2 = father('Roman');
+
+calc1(5, 5);
+calc1(20, 10);
+calc1(30, 40);
+
+calc2(20, 50);
+calc2(50, 50);
+calc2(10, 5);
