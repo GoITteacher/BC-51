@@ -22,3 +22,13 @@ let users = [
     phone: '+280996161',
   },
 ];
+
+const findUser = users.find((elem, index, array) => {
+  return (elem.name = '123' && elem.age > 20);
+});
+
+console.log(findUser);
+
+findUser.age = 35;
+
+console.log(users);

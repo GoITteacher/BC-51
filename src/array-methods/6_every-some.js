@@ -8,7 +8,15 @@
  - Перебирання масиву припиняється, якщо колбек повертає false.
 */
 
-let array = [-1, -6, -1, -6, -1, -6, -1, -6, 1];
+let array = [3, 6, 10, 12, 16, 29, 29];
+
+const temp = array.every((elem, index, array) => {
+  return elem % 3 === 0 || elem % 2 === 0;
+});
+
+console.log(temp);
+
+// true && true && false && true;
 
 /*
     SOME
@@ -18,3 +26,13 @@ let array = [-1, -6, -1, -6, -1, -6, -1, -6, 1];
  - Повертає false, якщо жоден елемент масиву не задовольняє умову.
  - Перебирання масиву припиняється, якщо колбек повертає true.
 */
+
+let array1 = [3, 6, 10, 12, 16, 29, 29, -5];
+
+const result = array1.some((elem, index, array) => {
+  return elem < 0;
+});
+
+// false || false || false || true || false || false;
+
+console.log(result);

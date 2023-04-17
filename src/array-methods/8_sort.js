@@ -28,8 +28,8 @@ let cars = [
     make: 'Mazda',
     model: 'Mazda 6',
     type: 'sedan',
-    amount: 8,
-    price: 24195,
+    amount: 2,
+    price: 21195,
     onSale: false,
   },
   {
@@ -44,7 +44,7 @@ let cars = [
     make: 'Toyota',
     model: '4Runner',
     type: 'suv',
-    amount: 19,
+    amount: 2,
     price: 34210,
     onSale: false,
   },
@@ -89,3 +89,41 @@ let cars = [
     onSale: false,
   },
 ];
+
+// cars.sort((a, b) => {
+//   if (a.amount !== b.amount) {
+//     return a.amount - b.amount;
+//   } else {
+//     return a.model.localeCompare(b.model);
+//   }
+// });
+
+// cars.sort((a, b) => {
+//   return a.price - b.price;
+// });
+
+// console.table(cars);
+
+// const arr = ['Max', 'Mariya', 'Nadiya', 'Vira', 'Julia'];
+
+// const arr1 = [4, 7, 0, 1];
+
+// arr1.sort((a, b) => {
+//   return a - b;
+// });
+
+// console.log(arr1);
+
+// -n 0 +n
+// =====================
+
+let result = cars
+  .filter((elem, index, array) => {
+    return elem.onSale;
+  })
+  .map(elem => elem.model)
+  .sort();
+
+result = result;
+
+console.log(result);

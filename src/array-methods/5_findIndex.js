@@ -7,22 +7,27 @@
 
 */
 
-// let array = [
-//   {
-//     name: "123",
-//     age: 12,
-//     phone: "+28099448",
-//   },
-//   {
-//     name: "123",
-//     age: 20,
-//     phone: "+28099854185",
-//   },
-//   {
-//     name: "123",
-//     age: 31,
-//     phone: "+280996161",
-//   },
-// ];
+let array = [
+  {
+    name: '123',
+    age: 12,
+    phone: '+28099448',
+  },
+  {
+    name: '123',
+    age: 20,
+    phone: '+28099854185',
+  },
+  {
+    name: '123',
+    age: 31,
+    phone: '+280996161',
+  },
+];
 
-let str = ['Roman', 'Anatoliy', 'Anatoliy', 'Anatoliy', 'Anatoliy'];
+const objIndex = array.findIndex(e => {
+  return e.name === '123' && e.age > 18;
+});
+
+console.log(objIndex);
+// let str = ['Roman', 'Anatoliy', 'Nazar', 'Julia', 'Mariya'];

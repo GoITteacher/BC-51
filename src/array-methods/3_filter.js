@@ -10,4 +10,24 @@
 
 */
 
-let array = [1, 3, 56, 1, 5, 78, 2, 6];
+let array = [1, 3, 0, 1, 0, 78, 0, 6];
+// let array = ['awdaw', 'awdaw', '', 'sefsef', '', 'awdaw', 'awdawd'];
+
+// const result = array.filter((elem, index, array) => {
+//   return index % 2 === 0;
+// });
+// const result = array.filter((elem, index, array) => {
+//   return elem > 50;
+// });
+
+// const result = array.filter(e => e);
+
+const result = array.filter((elem, index) => {
+  const isPositive = elem > 0;
+  const isOdd = elem % 2 !== 0;
+
+  return isPositive && isOdd;
+  //   return elem > 0 && elem % 1 !== 0 || elem <30 ;
+});
+
+console.log(result);
