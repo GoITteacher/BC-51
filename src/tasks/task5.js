@@ -1,12 +1,20 @@
 // https://habr.com/ru/post/149516/
 
+const user1 = {
+  name: 'user1',
+};
+const user2 = {
+  name: 'user2',
+};
+
 let f = function () {
-  this.x = 5;
+  console.log(this);
 };
 
 const obj = {
-  foo: f,
+  foo: f.bind(user1),
 };
 
-obj.foo();
-console.log(obj);
+const copyFun = obj.foo.bind(user2);
+
+copyFun();

@@ -3,6 +3,7 @@ let elem = {
 };
 
 function func(surname, name) {
+  //this = elem
   let obj1 = {
     foo: () => {
       console.log(this);
