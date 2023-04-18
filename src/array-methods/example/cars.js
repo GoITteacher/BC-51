@@ -4,7 +4,7 @@ const cars = [
     model: 'CR-V',
     type: 'suv',
     amount: 14,
-    price: 24045,
+    price: 10000,
     onSale: true,
   },
   {
