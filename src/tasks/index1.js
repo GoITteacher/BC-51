@@ -1,35 +1,48 @@
+// pageCount
+// pageItemCount
+// itemCount
+
 class PaginationHelper {
-  constructor(items, itemCountForPage) {
+  items;
+  #per_page;
+
+  constructor(items, per_page) {
     this.items = items;
-    this.itemCountForPage = itemCountForPage;
+    this.per_page = per_page;
+  }
+
+  set per_page(newValue) {
+    if (typeof newValue === 'number' && newValue > 0) {
+      this.#per_page = newValue;
+    } else {
+      console.log('Error');
+      this.#per_page = this.#per_page || 10;
+    }
   }
 
   pageCount() {
-    let length = this.items.length;
-    let result = Math.ceil(length / this.itemCountForPage);
-    return result;
+    return Math.ceil(this.items.length / this.#per_page);
+  }
+
+  pageItemCount(index) {
+    if (index < this.pageCount() && index > 0) {
+      return this.#per_page;
+    } else if (index === this.pageCount()) {
+      return this.items.length % this.#per_page || this.#per_page;
+    } else {
+      return 'Error index page!';
+    }
   }
 
   itemCount() {
     return this.items.length;
   }
-
-  pageItemCount(index) {
-    index += 1;
-    let pageCount = this.pageCount();
-
-    if (index <= 0 || index > pageCount) return -1;
-    //> 1......10 <
-
-    if (index < pageCount) {
-      return this.itemCountForPage;
-    } else {
-      let count = this.itemCount() % this.itemCountForPage;
-      return count > 0 ? count : this.itemCountForPage;
-    }
-  }
 }
 
-let pagHelp = new PaginationHelper(['a', 'b', 'c', 'd', 'e', 'f', 'e', 'f'], 4);
+let pagHelp = new PaginationHelper(
+  [1, 2, 3, 4, 5, 6, 1, 3, 6, 8, 2, 67, 1, 1],
+  3,
+);
 
 console.log(pagHelp.pageItemCount(1));
+console.log(pagHelp.pageItemCount(5));
