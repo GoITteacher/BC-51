@@ -7,33 +7,15 @@
     - removeItem(item) - получает товар и, если он есть, удаляет его из текущих.
 */
 
-class Storage {
-  items;
+class Storage {}
 
-  constructor(items) {
-    this.items = items;
-  }
-
-  getItems() {
-    return this.items;
-  }
-
-  addItem(item) {
-    this.items.push(item);
-  }
-
-  removeItem(item1) {
-    this.items = this.items.filter((item) => item != item1);
-  }
-}
-
-const storage = new Storage(["🍎", "🍋", "🍇", "🍑"]);
+const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
 
 const items = storage.getItems();
 console.table(items); // [ '🍎', '🍋', '🍇', '🍑' ]
 
-storage.addItem("🍌");
+storage.addItem('🍌');
 console.table(storage.items); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
 
-storage.removeItem("🍋");
+storage.removeItem('🍋');
 console.table(storage.items); // [ '🍎', '🍇', '🍑', '🍌' ]

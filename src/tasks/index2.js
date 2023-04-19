@@ -28,14 +28,14 @@ class Phone {
   }
 
   sendMessage(numbers) {
-    numbers.forEach((number) => {
+    numbers.forEach(number => {
       console.log(`Sended ${number}`);
     });
   }
 }
 
-const phone1 = new Phone("1", "1");
-const phone2 = new Phone("2", "2", "2");
-const phone3 = new Phone("3", "3", "3");
+const phone1 = new Phone('1', '1');
+const phone2 = new Phone('2', '2', '2');
+const phone3 = new Phone('3', '3', '3');
 
-phone1.sendMessage(["1", "2", "3", "4", "5", "6"]);
+phone1.sendMessage(['1', '2', '3', '4', '5', '6']);

@@ -30,6 +30,6 @@ class PaginationHelper {
   }
 }
 
-let pagHelp = new PaginationHelper(["a", "b", "c", "d", "e", "f", "e", "f"], 4);
+let pagHelp = new PaginationHelper(['a', 'b', 'c', 'd', 'e', 'f', 'e', 'f'], 4);
 
 console.log(pagHelp.pageItemCount(1));
