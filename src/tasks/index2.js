@@ -1,37 +1,15 @@
 class Phone {
-  number;
-  model;
-  weight;
+  constructor(number, model, weight) {}
 
-  constructor(number, model, weight) {
-    this.number = number;
-    this.model = model;
-    this.weight = weight;
-  }
+  getPhone() {}
 
-  getPhone() {
-    console.log(this.number, this.model, this.weight);
-  }
+  receiveCall(name) {}
 
-  receiveCall(name) {
-    console.log(`Call ${name}`);
-  }
+  receiveCall(name, name1, name2) {}
 
-  receiveCall(name, name1, name2) {
-    console.log(`Call ${name}`);
-    console.log(`Call ${name1}`);
-    console.log(`Call ${name2}`);
-  }
+  getNumber() {}
 
-  getNumber() {
-    return this.number;
-  }
-
-  sendMessage(numbers) {
-    numbers.forEach(number => {
-      console.log(`Sended ${number}`);
-    });
-  }
+  sendMessage(numbers) {}
 }
 
 const phone1 = new Phone('1', '1');
