@@ -78,7 +78,7 @@ for (let i = 0; i < 5; i++) {
 
 arr = [];
 
-Person.getCounter();
+// Person.getCounter();
 // const user2 = new Person('Max', 22, '123234523');
 // const user3 = new Person('Anton', 34, 'sfsrgdth');
 
@@ -136,3 +136,68 @@ class Tesla {
 // };
 
 // =======================================
+
+/* 
+-Наслідування класів
+-Конструктор дочірнього класу
+-Методи дочірнього класу 
+*/
+
+class Animal {
+  legs;
+  eyes;
+  name;
+
+  /* 
+  constructor(){}
+  */
+
+  constructor(legs, eyes, name) {
+    this.legs = legs;
+    this.eyes = eyes;
+    this.name = name;
+  }
+
+  eat() {
+    console.log('Eat!');
+  }
+  sleep() {
+    console.log('Sleep!');
+  }
+}
+
+class Dog extends Animal {
+  age;
+  name = 'Test';
+  /* 
+  constructor(){
+    super()
+  }
+  */
+
+  eat() {}
+
+  sleep() {
+    console.log('Sleep Dog!');
+  }
+  woof() {
+    console.log('Woof! Woof!');
+  }
+}
+
+class Cat extends Animal {
+  constructor(name) {
+    super(4, 2, name);
+  }
+  myaw() {
+    console.log('Myaw! Myaw!');
+  }
+}
+
+const dog1 = new Dog('Robin');
+const dog2 = new Dog('Black');
+const dog3 = new Dog('White');
+const cat = new Cat('Booby');
+
+dog1.eat();
+// ========================
