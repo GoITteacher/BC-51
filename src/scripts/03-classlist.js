@@ -14,3 +14,9 @@ elem.classList.replace(oldClass, newClass) - замінює існуючий к�
 /* 
 Властивість style
 */
+listItem.style.backgroundColor = 'red';
+listItem.style.fontSize = '10px';
+listItem.style.color = 'green';
+listItem.style.display = 'flex';
+
+console.log();

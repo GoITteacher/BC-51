@@ -1,5 +1,5 @@
 let myBtn = document.querySelector('#testButton');
-let list = document.querySelector('.usernames');
+let listElem = document.querySelector('.usernames');
 
 /* 
 Створення
@@ -13,6 +13,10 @@ document.createElement(tagName);
     - element.after(el1, el2, ...) - додає один або декілька елементів після елемента element.
     - element.before(el1, el2, ...) - додає один або декілька елементів перед елементом element.
 */
+
+myBtn.addEventListener('click', () => {
+  listElem.remove();
+});
 
 /* 
 Видалення
