@@ -8,3 +8,24 @@
  */
 
 const boxRef = document.querySelector('.js-box');
+
+/* boxRef.addEventListener('mouseenter', e => {
+  boxRef.classList.add('box--active');
+});
+
+boxRef.addEventListener('mouseleave', e => {
+  boxRef.classList.remove('box--active');
+}); */
+
+// boxRef.addEventListener('mouseover', e => {
+//   console.log('active');
+// });
+
+// boxRef.addEventListener('mouseout', e => {
+//   console.log('mouseout');
+// });
+
+let counter = 0;
+boxRef.addEventListener('mousemove', e => {
+  console.log(e);
+});
