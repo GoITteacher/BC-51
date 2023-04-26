@@ -117,7 +117,7 @@ img{
     font-size: 18px;
     height: 50px;
     margin-top: 38px;
-    // outline: 0;
+    outline: 0;
     text-align: center;
     width: 100%;
   }
@@ -126,3 +126,13 @@ img{
     background-color: #06b;
   }
   
+
+  .blur-up {
+		filter: blur(5px);
+		transition: filter 400ms, -webkit-filter 400ms;
+	}
+
+	.blur-up.lazyloaded {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+	}
