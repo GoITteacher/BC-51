@@ -4,7 +4,9 @@
   "description": "- Терминал   - [Шпаргалка 1](https://tproger.ru/translations/bash-cheatsheet/)   - [Шпаргалка 2](https://habr.com/ru/company/ruvds/blog/445270/)   - Открыть     - `control + ~`     - `view > teminal`     - через палитру `command + shift + p`   - Основные полезные команды     - путь (pwd)     - лист (ls)     - навигация (cd)     - очистка `clear` или `control + l`     - создание файлов (touch)     - создание папок (mkdir)     - переименование/перемещение (mv)     - удаление (rm) - Node.js и npm   - установка   - инициализация и package.json   - [npmjs.com](https://www.npmjs.com/)   - работа с пакетами     - установка (https://www.npmjs.com/package/uniqid)(https://www.npmjs.com/package/date-fns)     - удаление   - npm-скрипты     - pre и post - Транспиляция кода   - [Babel](https://babeljs.io/)   - CLI и npm-скрипты   - Пресеты   - [Browserslist](https://github.com/browserslist/browserslist) - [Сборщик Parcel](https://parceljs.org/) - [ECMAScript модули](https://exploringjs.com/es6/ch_modules.html)   - Дефолтный (default) експорт и импорт   - Именованный (named) експорт и импорт   - Импорт пространства имён (namespace)",
   "main": "index.js",
   "scripts": {
-    "push": "git add .; git commit -m 'update'; git push"
+    "preprintHello": "npm run ",
+    "printHello": "echo Hello",
+    "postprintHello": "echo after print"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/GoITteacher/BC-51/issues"
   },
-  "homepage": "https://github.com/GoITteacher/BC-51#readme"
+  "homepage": "https://github.com/GoITteacher/BC-51#readme",
+  "dependencies": {
+    "basiclightbox": "^5.0.4",
+    "lazysizes": "^5.3.2",
+    "lodash": "^4.17.21"
+  }
 }
