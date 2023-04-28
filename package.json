@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "start": "npx parcel src/index.html",
-    "build": "parcel build src/*.html --public-url /js-example/"
+    "build": "parcel build src/*.html --public-url /js-example/",
+    "push": "git add .; git commit -m 'update'; git push;"
+
   },
   "repository": {
     "type": "git",
