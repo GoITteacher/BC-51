@@ -8,8 +8,10 @@ import '../css/common.css';
  - Date.now()
 */
 
-/* 
+// const date = new Date();
+// console.log(date);
 
+/* 
 new Date("2030-03-16");
 new Date("2030-03");
 new Date("2018");
@@ -24,17 +26,49 @@ new Date("16 March 2030");
 
 */
 
-const dateMin = new Date();
+// console.log(dateMin);
+// console.log(dateMin.getDay());
+// console.log(dateMin.getMonth());
+// console.log(dateMin.getDate());
+// console.log(dateMin.getFullYear());
+// console.log(dateMin.getHours());
+// console.log(dateMin.getMinutes());
+// console.log(dateMin.getSeconds());
+// console.log(dateMin.getTime());
 
-// setTimeout(() => {
-//   const dateMax = new Date();
-//   console.log(dateMax - dateMin);
-// }, 2000);
+/// ===============
 
-console.log(dateMin.toTimeString());
-console.log(dateMin.toLocaleTimeString());
-console.log(dateMin.toUTCString());
-console.log(dateMin.toDateString());
-console.log(dateMin.toLocaleString());
-console.log(dateMin.toLocaleDateString());
-console.log(dateMin.getTime());
+// const date = new Date();
+// date.setTime(5000000000);
+// console.log(date);
+
+// =================
+
+const date1 = new Date('2030-03-16');
+const date2 = new Date('2030-03-12');
+
+// console.log(date1 > date2);
+// console.log(date1 === date2);
+// console.log(date1 >= date2);
+
+// const result = date1 - date2;
+// const sec = result / 1000;
+// const minutes = sec / 60;
+// const hours = minutes / 60;
+
+// console.log(hours);
+
+// =============
+// const time = date1.getTime() + date2.getTime();
+// console.log(time);
+// ==============
+
+// console.log(Date.now());
+
+// =============================
+
+// const dateStart = new Date();
+
+// setInterval(() => {
+//   console.log(Date.now() - dateStart);
+// }, 1000);

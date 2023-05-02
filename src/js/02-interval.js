@@ -4,34 +4,22 @@ import '../css/common.css';
  * Метод setInterval(callback, delay, args)
  */
 
-// let counter = 0;
-// const id = setInterval(
-//   id => {
-//     console.log(`start - ${id}`);
-//     for (let i = 0; i < 1000000000; i++) {}
-//     console.log('end');
-//   },
-//   1000,
-//   counter++,
-// );
+// const id = setInterval(() => {
+//   console.log('Hello');
+// }, 500);
 
-// /*
-//  * Очистка интервала с clearInterval(intervalId)
-//  */
+/*
+ * Очистка интервала с clearInterval(intervalId)
+ */
 
-// setTimeout(() => {
-//   console.log('clear');
-//   clearInterval(id);
-// }, 5000);
+// console.log(id);
+// clearInterval(id);
 
-setTimeout(() => {
-  console.log('start');
-}, 100);
+let counter = 0;
 
-setTimeout(() => {
-  console.log('mediana');
-}, 0);
-
-setTimeout(() => {
-  console.log('end');
-}, 0);
+// setInterval(() => {
+//   console.log('Hello 1');
+// }, 1000);
+// setInterval(() => {
+//   console.log('Hello 2');
+// }, 4000);
