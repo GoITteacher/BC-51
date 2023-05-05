@@ -1,13 +1,14 @@
 import '../css/common.css';
 import { refs } from './modules/refs.js';
+
 import { getQuotes } from './modules/quotesAPI';
+import { getHero } from './modules/heroesAPI';
+
 import quotesTemplate from '../templates/quotes-card';
 import heroesTemplate from '../templates/hero-card';
-import { getHero } from './modules/heroesAPI';
 
 // =======================================================
 refs.form.addEventListener('submit', onSubmitHandler);
-
 function onSubmitHandler(e) {
   e.preventDefault();
 
@@ -17,9 +18,7 @@ function onSubmitHandler(e) {
   });
 }
 // =======================================================
-
 refs.form1.addEventListener('submit', onSearchHero);
-
 function onSearchHero(e) {
   e.preventDefault();
 

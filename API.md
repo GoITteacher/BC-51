@@ -20,16 +20,16 @@
 
 ```js
 const options = {
-  params: { tag: "dark", blacklist: "dirty,men" },
+  params: { tag: 'dark', blacklist: 'dirty,men' },
   headers: {
-    Authorization: "3mfgXHZm497i",
-    "X-RapidAPI-Key": "9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4",
-    "X-RapidAPI-Host": "random-stuff-api.p.rapidapi.com",
+    Authorization: '3mfgXHZm497i',
+    'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
+    'X-RapidAPI-Host': 'random-stuff-api.p.rapidapi.com',
   },
 };
 
-fetch("https://random-stuff-api.p.rapidapi.com/joke", options)
-  .then((data) => data.json())
+fetch('https://random-stuff-api.p.rapidapi.com/joke', options)
+  .then(data => data.json())
   .then(console.log);
 ```
 
@@ -39,15 +39,15 @@ fetch("https://random-stuff-api.p.rapidapi.com/joke", options)
 
 ```js
 const options = {
-  method: "GET",
-  params: { limit: "5" },
+  method: 'GET',
+  params: { limit: '5' },
   headers: {
-    "X-RapidAPI-Key": "9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4",
-    "X-RapidAPI-Host": "random-user-generator1.p.rapidapi.com",
+    'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
+    'X-RapidAPI-Host': 'random-user-generator1.p.rapidapi.com',
   },
 };
 
-fetch("https://random-user-generator1.p.rapidapi.com/locale/id_ID", options);
+fetch('https://random-user-generator1.p.rapidapi.com/locale/id_ID', options);
 ```
 
 ---
@@ -57,21 +57,21 @@ fetch("https://random-user-generator1.p.rapidapi.com/locale/id_ID", options);
 ```js
 const options = {
   params: {
-    url: "https://www.flowcode.com",
-    imageType: "png",
-    fgColor: "#ff0000",
-    bgColor: "#cbcbcb",
-    style: "default",
-    rimTextTop: "Scan Me",
-    rimTextBottom: "Scan Me",
-    moduleShape: "default",
+    url: 'https://www.flowcode.com',
+    imageType: 'png',
+    fgColor: '#ff0000',
+    bgColor: '#cbcbcb',
+    style: 'default',
+    rimTextTop: 'Scan Me',
+    rimTextBottom: 'Scan Me',
+    moduleShape: 'default',
   },
   headers: {
-    "X-RapidAPI-Key": "9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4",
-    "X-RapidAPI-Host": "flowcode1.p.rapidapi.com",
+    'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
+    'X-RapidAPI-Host': 'flowcode1.p.rapidapi.com',
   },
 };
-fetch("https://flowcode1.p.rapidapi.com/flowcode", options);
+fetch('https://flowcode1.p.rapidapi.com/flowcode', options);
 ```
 
 ---
@@ -81,11 +81,11 @@ fetch("https://flowcode1.p.rapidapi.com/flowcode", options);
 ```js
 const options = {
   headers: {
-    "X-RapidAPI-Key": "9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4",
-    "X-RapidAPI-Host": "dbm.p.rapidapi.com",
+    'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
+    'X-RapidAPI-Host': 'dbm.p.rapidapi.com',
   },
 };
-fetch("https://dbm.p.rapidapi.com/movies?_limit=7", options);
+fetch('https://dbm.p.rapidapi.com/movies?_limit=7', options);
 ```
 
 ---
@@ -94,19 +94,19 @@ fetch("https://dbm.p.rapidapi.com/movies?_limit=7", options);
 
 ```js
 const options = {
-  method: "GET",
+  method: 'GET',
   headers: {
-    Authorization: "3mfgXHZm497i",
-    "X-RapidAPI-Key": "fd83113197msh93c2b2d5cc00a3ep1c503bjsn3e85bf01dd76",
-    "X-RapidAPI-Host": "random-stuff-api.p.rapidapi.com",
+    Authorization: '3mfgXHZm497i',
+    'X-RapidAPI-Key': 'fd83113197msh93c2b2d5cc00a3ep1c503bjsn3e85bf01dd76',
+    'X-RapidAPI-Host': 'random-stuff-api.p.rapidapi.com',
   },
 };
 
 fetch(
-  "https://random-stuff-api.p.rapidapi.com/ai?msg=Hi%20there%2C%20how%20are%20you%3F%20(REQUIRED)&bot_name=Random%20Stuff%20Api%20(OPTIONAL)&bot_gender=male%20(OPTIONAL)&bot_master=PGamerX%20(OPTIONAL)&bot_age=19%20(OPTIONAL)&bot_company=PGamerX%20Studio%20(OPTIONAL)&bot_location=India%20(OPTIONAL)&bot_email=admin%40pgamerx.com%20(OPTIONAL)&bot_build=Public%20(OPTIONAL)&bot_birth_year=2002%20(OPTIONAL)&bot_birth_date=1st%20January%2C%202002%20(OPTIONAL)&bot_birth_place=India%20(OPTIONAL)&bot_favorite_color=Blue%20(OPTIONAL)&bot_favorite_book=Harry%20Potter%20(OPTIONAL)&bot_favorite_band=Imagine%20Doggos%20(OPTIONAL)&bot_favorite_artist=Eminem%20(OPTIONAL)&bot_favorite_actress=Emma%20Watson%20(OPTIONAL)&bot_favorite_actor=Jim%20Carrey%20(OPTIONAL)&id=For%20customised%20response%20for%20each%20user",
-  options
+  'https://random-stuff-api.p.rapidapi.com/ai?msg=Hi%20there%2C%20how%20are%20you%3F%20(REQUIRED)&bot_name=Random%20Stuff%20Api%20(OPTIONAL)&bot_gender=male%20(OPTIONAL)&bot_master=PGamerX%20(OPTIONAL)&bot_age=19%20(OPTIONAL)&bot_company=PGamerX%20Studio%20(OPTIONAL)&bot_location=India%20(OPTIONAL)&bot_email=admin%40pgamerx.com%20(OPTIONAL)&bot_build=Public%20(OPTIONAL)&bot_birth_year=2002%20(OPTIONAL)&bot_birth_date=1st%20January%2C%202002%20(OPTIONAL)&bot_birth_place=India%20(OPTIONAL)&bot_favorite_color=Blue%20(OPTIONAL)&bot_favorite_book=Harry%20Potter%20(OPTIONAL)&bot_favorite_band=Imagine%20Doggos%20(OPTIONAL)&bot_favorite_artist=Eminem%20(OPTIONAL)&bot_favorite_actress=Emma%20Watson%20(OPTIONAL)&bot_favorite_actor=Jim%20Carrey%20(OPTIONAL)&id=For%20customised%20response%20for%20each%20user',
+  options,
 )
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
 ```
