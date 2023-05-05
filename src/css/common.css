@@ -39,3 +39,10 @@ img {
 .card {
   margin: 10px;
 }
+
+.box{
+  padding: 10px;
+  border:1px solid black;
+  border-radius: 10px;
+  max-width: 500px;
+}
