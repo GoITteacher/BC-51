@@ -1,23 +1,29 @@
 import { NewsAPI } from './modules/newsApi';
 const newsApi = new NewsAPI();
-
 const refs = {
   formElem: document.querySelector('.js-search-form'),
   articleListElem: document.querySelector('.js-article-list'),
-  loadMoreBtnElem: document.querySelector('.js-btn-load'),
 };
 
-refs.formElem.addEventListener('submit', onFormSubmit);
-refs.loadMoreBtnElem.addEventListener('click', onBtnLoadClick);
+let observer = new IntersectionObserver(onBtnLoadClick, {
+  threshold: 1.0,
+});
 
-function onBtnLoadClick(e) {
-  newsApi.PAGE++;
-  newsApi.getNews().then(data => {
-    renderArticles(data.articles);
+let target = document.querySelector('.js-target');
+observer.observe(target);
+
+refs.formElem.addEventListener('submit', onFormSubmit);
+
+function onBtnLoadClick(entries, observer) {
+  if (!newsApi.QUERY) return;
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      newsApi.PAGE++;
+      newsApi.getNews().then(data => {
+        renderArticles(data.articles);
+      });
+    }
   });
-  if (newsApi.PAGE === newsApi.TOTAL_PAGES) {
-    refs.loadMoreBtnElem.disabled = true;
-  }
 }
 
 function onFormSubmit(e) {
@@ -27,9 +33,12 @@ function onFormSubmit(e) {
 
   newsApi.PAGE = 1;
   newsApi.QUERY = query;
+  if (!newsApi.QUERY) return;
+
+  newsApi.isActive = true;
   newsApi.getNews().then(data => {
     renderArticles(data.articles);
-    refs.loadMoreBtnElem.disabled = false;
+    newsApi.isActive = false;
   });
 }
 
