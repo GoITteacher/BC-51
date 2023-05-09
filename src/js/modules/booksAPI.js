@@ -1,3 +1,12 @@
+import Axios from 'axios';
+
+const axios = Axios.create({
+  baseURL: 'http://localhost:5000',
+  headers: {
+    test: 'Hello',
+  },
+});
+
 class BookAPI {
   #BASE_URL = 'http://localhost:5000';
   #END_POINT = '/books';
@@ -55,4 +64,30 @@ class BookAPI {
   }
 }
 
-export const booksAPI = new BookAPI();
+class BookAPIByAxios {
+  getBooks() {
+    return axios.get('/books');
+  }
+
+  getPopularBooks() {
+    return axios.get('/books', {});
+  }
+
+  createBook(book) {
+    return axios.post('/books', book).then(res => res.data);
+  }
+
+  resetBook({ id, ...book }) {
+    return axios.put(`/books/${id}`, book).then(res => res.data);
+  }
+
+  updateBook({ id, ...book }) {
+    return axios.patch(`/books/${id}`, book).then(res => res.data);
+  }
+
+  deleteBook(id) {
+    return axios.delete(`/books/${id}`);
+  }
+}
+
+export const booksAPI = new BookAPIByAxios();

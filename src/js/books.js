@@ -10,8 +10,8 @@ const refs = {
 };
 
 function onLoad() {
-  booksAPI.getBooks().then(books => {
-    renderBooks(books); // [];
+  booksAPI.getPopularBooks().then(response => {
+    renderBooks(response.data);
   });
 }
 onLoad();
