@@ -25,6 +25,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.4.0",
     "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^5.7.1",
     "parcel": "^2.6.0",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",

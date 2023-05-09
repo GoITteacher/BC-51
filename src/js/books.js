@@ -1,92 +1,116 @@
 import '../css/common.css';
-import { BooksAPI } from './modules/booksAPI.js';
-import cardBook from '../templates/card-books.hbs';
-import exampleTemplate from '../templates/example.hbs';
-
-const booksApi = new BooksAPI();
-let listBooks = [];
+import { booksAPI } from './modules/booksAPI';
 
 const refs = {
-  createForm: document.querySelector('.js-create-form'),
-  updateForm: document.querySelector('.js-update-form'),
-  resetForm: document.querySelector('.js-reset-form'),
-  btnLoadMore: document.querySelector('.js-btn-load'),
-  bookList: document.querySelector('.js-articl-list'),
-  deleteForm: document.querySelector('.js-delete-form'),
+  bookListElem: document.querySelector('.js-article-list'),
+  createFormElem: document.querySelector('.js-create-form'),
+  resetFormElem: document.querySelector('.js-reset-form'),
+  updateFormElem: document.querySelector('.js-update-form'),
+  deleteFormElem: document.querySelector('.js-delete-form'),
 };
 
-refs.createForm.addEventListener('submit', onCreateFormSubmit);
-refs.deleteForm.addEventListener('submit', onDeleteFormSubmit);
-refs.resetForm.addEventListener('submit', onResetFormSubmit);
-refs.updateForm.addEventListener('submit', onUpdateFormSubmit);
+function onLoad() {
+  booksAPI.getBooks().then(books => {
+    renderBooks(books); // [];
+  });
+}
+onLoad();
 
-function onCreateFormSubmit(e) {
+function bookMarkup(book) {
+  return `
+  <li data-id="${book.id}" class="card articles book-card">
+  <h2>${book.title}</h2>
+  <p>${book.desc}</p>
+  ${book.author}
+</li>`;
+}
+
+function booksMarkup(books) {
+  return books.map(bookMarkup).join('');
+}
+
+function renderBooks(books) {
+  const markup = booksMarkup(books);
+  refs.bookListElem.innerHTML = markup;
+}
+// ================================
+
+refs.createFormElem.addEventListener('submit', onCreateBook);
+refs.resetFormElem.addEventListener('submit', onResetBook);
+refs.updateFormElem.addEventListener('submit', onUpdateBook);
+refs.deleteFormElem.addEventListener('submit', onDeleteBook);
+
+function onCreateBook(e) {
   e.preventDefault();
-
-  // const book = new FormData(e.target);
-  // console.log(book);
+  const { bookTitle, bookAuthor, bookDesc } = e.target.elements;
 
   const book = {
-    title: e.target.elements.bookTitle.value,
-    author: e.target.elements.bookAuthor.value,
-    desc: e.target.elements.bookDesc.value,
+    title: bookTitle.value,
+    author: bookAuthor.value,
+    desc: bookDesc.value,
   };
 
-  booksApi
-    .createBook(book)
-    .then(response => {
-      return response.json();
-    })
-    .then(book => {
-      listBooks.push(book);
-      renderBooks(listBooks);
-    });
-}
-
-function onResetFormSubmit(e) {
-  e.preventDefault();
-
-  const book = new FormData(e.target);
-  const bookForUpdate = {};
-
-  book.forEach((value, key) => {
-    bookForUpdate[key] = value;
+  booksAPI.createBook(book).then(newBook => {
+    const markup = bookMarkup(newBook);
+    refs.bookListElem.insertAdjacentHTML('beforeend', markup);
   });
 
-  // console.log(book.get('bookId'));
-  // const id = book.get('bookId');
-  // book.delete('bookId');
-
-  booksApi.resetBook(bookForUpdate);
+  e.target.reset();
 }
 
-function onUpdateFormSubmit(e) {
+function onResetBook(e) {
   e.preventDefault();
+  const book = {};
 
-  const book = new FormData(e.target);
-  const bookForUpdate = {};
+  const formData = new FormData(e.target);
 
-  book.forEach((value, key) => {
+  formData.forEach((value, key) => {
+    key = key.replace('book', '').toLowerCase();
+    book[key] = value;
+  });
+
+  booksAPI.resetBook(book).then(newBook => {
+    const oldBookElem = document.querySelector(`[data-id="${book.id}"]`);
+    const markup = bookMarkup(newBook);
+    oldBookElem.insertAdjacentHTML('afterend', markup);
+    oldBookElem.remove();
+  });
+
+  e.target.reset();
+}
+
+function onUpdateBook(e) {
+  e.preventDefault();
+  const book = {};
+
+  const formData = new FormData(e.target);
+
+  formData.forEach((value, key) => {
     key = key.replace('book', '').toLowerCase();
     if (value) {
-      bookForUpdate[key] = value;
+      book[key] = value;
     }
   });
 
-  booksApi.updateBook(bookForUpdate);
+  booksAPI.updateBook(book).then(newBook => {
+    const oldBookElem = document.querySelector(`[data-id="${book.id}"]`);
+    const markup = bookMarkup(newBook);
+    oldBookElem.insertAdjacentHTML('afterend', markup);
+    oldBookElem.remove();
+  });
+
+  e.target.reset();
 }
 
-function onDeleteFormSubmit(e) {
+function onDeleteBook(e) {
   e.preventDefault();
+
   const id = e.target.elements.bookId.value;
-  booksApi.deleteBook(id);
-}
 
-booksApi.getAllBooks().then(books => {
-  listBooks = books;
-  renderBooks(books);
-});
+  booksAPI.deleteBook(id).then(() => {
+    const oldBookElem = document.querySelector(`[data-id="${id}"]`);
+    oldBookElem.remove();
+  });
 
-function renderBooks(books) {
-  refs.bookList.innerHTML = cardBook(books);
+  e.target.reset();
 }
