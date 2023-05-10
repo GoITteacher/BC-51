@@ -41,6 +41,18 @@ async function getCurrentComment(user, post, comment) {
   }
 }
 
-getCurrentComment(20, 2, 4).then(comment => {
-  console.log(comment);
-});
+async function foo() {
+  const promises = [];
+  for (let i = 1; i < 50; i++) {
+    if (i % 7 === 0) {
+      const promise = axiosV2.get(`/comments/${i}`);
+      promises.push(promise);
+    }
+  }
+
+  let result = await Promise.all(promises);
+  result = result.map(r => r.data);
+  console.log(result);
+}
+
+foo();
