@@ -11,12 +11,13 @@ class BookAPI {
   #BASE_URL = 'http://localhost:5000';
   #END_POINT = '/books';
 
-  getBooks() {
+  async getBooks() {
     const url = this.#BASE_URL + this.#END_POINT;
-    return fetch(url).then(res => res.json());
+    const res = await fetch(url);
+    return res.json();
   }
 
-  createBook(book) {
+  async createBook(book) {
     const url = this.#BASE_URL + this.#END_POINT;
 
     const options = {
@@ -27,10 +28,11 @@ class BookAPI {
       },
     };
 
-    return fetch(url, options).then(res => res.json());
+    const res = await fetch(url, options);
+    return res.json();
   }
 
-  resetBook({ id, ...book }) {
+  async resetBook({ id, ...book }) {
     const url = this.#BASE_URL + this.#END_POINT + `/${id}`;
     const options = {
       method: 'PUT',
@@ -39,10 +41,11 @@ class BookAPI {
         'Content-Type': 'application/json',
       },
     };
-    return fetch(url, options).then(res => res.json());
+    const res = await fetch(url, options);
+    return res.json();
   }
 
-  updateBook({ id, ...book }) {
+  async updateBook({ id, ...book }) {
     const url = this.#BASE_URL + this.#END_POINT + `/${id}`;
     const options = {
       method: 'PATCH',
@@ -51,7 +54,8 @@ class BookAPI {
         'Content-Type': 'application/json',
       },
     };
-    return fetch(url, options).then(res => res.json());
+    const res = await fetch(url, options);
+    return res.json();
   }
 
   deleteBook(id) {
@@ -73,16 +77,25 @@ class BookAPIByAxios {
     return axios.get('/books', {});
   }
 
-  createBook(book) {
-    return axios.post('/books', book).then(res => res.data);
+  async createBook(book) {
+    const res = await axios.post('/books', book);
+    return res.data;
   }
 
-  resetBook({ id, ...book }) {
-    return axios.put(`/books/${id}`, book).then(res => res.data);
+  async resetBook({ id, ...book }) {
+    try {
+      const glovo = await axios.put(`/bookssefse/${id}`, book);
+      return glovo;
+    } catch {
+      console.log('Error request');
+    }
+
+    return;
   }
 
-  updateBook({ id, ...book }) {
-    return axios.patch(`/books/${id}`, book).then(res => res.data);
+  async updateBook({ id, ...book }) {
+    const res = await axios.patch(`/books/${id}`, book);
+    return res.data;
   }
 
   deleteBook(id) {

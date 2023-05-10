@@ -9,10 +9,9 @@ const refs = {
   deleteFormElem: document.querySelector('.js-delete-form'),
 };
 
-function onLoad() {
-  booksAPI.getPopularBooks().then(response => {
-    renderBooks(response.data);
-  });
+async function onLoad() {
+  const response = await booksAPI.getPopularBooks();
+  renderBooks(response.data);
 }
 onLoad();
 
@@ -40,7 +39,7 @@ refs.resetFormElem.addEventListener('submit', onResetBook);
 refs.updateFormElem.addEventListener('submit', onUpdateBook);
 refs.deleteFormElem.addEventListener('submit', onDeleteBook);
 
-function onCreateBook(e) {
+async function onCreateBook(e) {
   e.preventDefault();
   const { bookTitle, bookAuthor, bookDesc } = e.target.elements;
 
@@ -50,15 +49,18 @@ function onCreateBook(e) {
     desc: bookDesc.value,
   };
 
-  booksAPI.createBook(book).then(newBook => {
+  try {
+    const newBook = await booksAPI.createBook(book);
     const markup = bookMarkup(newBook);
     refs.bookListElem.insertAdjacentHTML('beforeend', markup);
-  });
+  } catch {
+    console.log('error');
+  }
 
   e.target.reset();
 }
 
-function onResetBook(e) {
+async function onResetBook(e) {
   e.preventDefault();
   const book = {};
 
@@ -69,17 +71,20 @@ function onResetBook(e) {
     book[key] = value;
   });
 
-  booksAPI.resetBook(book).then(newBook => {
+  try {
+    const newBook = await booksAPI.resetBook(book);
     const oldBookElem = document.querySelector(`[data-id="${book.id}"]`);
     const markup = bookMarkup(newBook);
     oldBookElem.insertAdjacentHTML('afterend', markup);
     oldBookElem.remove();
-  });
+  } catch {
+    console.log('error');
+  }
 
   e.target.reset();
 }
 
-function onUpdateBook(e) {
+async function onUpdateBook(e) {
   e.preventDefault();
   const book = {};
 
@@ -92,25 +97,19 @@ function onUpdateBook(e) {
     }
   });
 
-  booksAPI.updateBook(book).then(newBook => {
-    const oldBookElem = document.querySelector(`[data-id="${book.id}"]`);
-    const markup = bookMarkup(newBook);
-    oldBookElem.insertAdjacentHTML('afterend', markup);
-    oldBookElem.remove();
-  });
-
+  const newBook = await booksAPI.updateBook(book);
+  const oldBookElem = document.querySelector(`[data-id="${book.id}"]`);
+  const markup = bookMarkup(newBook);
+  oldBookElem.insertAdjacentHTML('afterend', markup);
+  oldBookElem.remove();
   e.target.reset();
 }
 
-function onDeleteBook(e) {
+async function onDeleteBook(e) {
   e.preventDefault();
-
   const id = e.target.elements.bookId.value;
-
-  booksAPI.deleteBook(id).then(() => {
-    const oldBookElem = document.querySelector(`[data-id="${id}"]`);
-    oldBookElem.remove();
-  });
-
+  await booksAPI.deleteBook(id);
+  const oldBookElem = document.querySelector(`[data-id="${id}"]`);
+  oldBookElem.remove();
   e.target.reset();
 }
