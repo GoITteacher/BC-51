@@ -29,6 +29,7 @@
 - У своєму репозиторію перейти на гілку dev - `git checkout dev`
 - Завантажити [Parcel](https://github.com/goitacademy/parcel-project-template)
 - Розархірувати файли парселю до себе в проєкт
+- Внести зміни до файлу package.json (змінити посилання)
 - У папці partials створити під кожну секцію окремий HTML файл і підключити ці
   файли у головний файл index.hml
   (`<include src="./partials/example.html"></include>`)
