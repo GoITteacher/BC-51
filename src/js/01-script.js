@@ -1,85 +1,61 @@
-import '../css/common.css';
-import { refs } from './modules/refs.js';
 
-import { searchHero } from './modules/hero';
-import { getQuotes } from './modules/quotesAPI';
-import { getHero } from './modules/heroesAPI';
-import { getPrice } from './modules/binanceAPI';
+import {getSuperHero} from './hero-api';
+import {getQuotes} from './quotes';
 
-import quotesTemplate from '../templates/quotes-card';
-import heroesTemplate from '../templates/hero-card';
+const heroBoxElem = document.querySelector('.js-card-container')
+const formEl = document.querySelector('.js-search-form')
+formEl.addEventListener('submit', onSearchHero)
 
-// =======================================================
-refs.form.addEventListener('submit', onSubmitHandler);
-function onSubmitHandler(e) {
-  e.preventDefault();
-
-  let dataPromise = getQuotes();
-  dataPromise.then(value => {
-    refs.cardContainer.innerHTML = quotesTemplate(value);
-  });
-}
-// =======================================================
-refs.form1.addEventListener('submit', onSearchHero);
-function onSearchHero(e) {
-  e.preventDefault();
-
-  const heroName = refs.form1.elements.query.value;
-  getHero(heroName)
-    .then(resolve => resolve.json())
-    .then(hero => {
-      // console.log(heroesTemplate(hero));
-      refs.cardContainer1.innerHTML = heroesTemplate(hero);
+function onSearchHero (event) {
+    event.preventDefault();
+    const heroName = event.target.elements.query.value;
+    getSuperHero(heroName).then(response => {
+        renderHero (response);
     });
 }
-// =======================================================
-refs.form2.addEventListener('submit', e => {
-  e.preventDefault();
-  const symbol = e.target.elements.query.value;
-  getPrice(symbol).then(data => {
-    renderCrypto(data);
-  });
-});
 
-function renderCrypto(data) {
-  const markup = `
-      <span>Symbol: ${data.symbol}</span><br>
-      <span>Price: ${data.price}</span>
-  `;
-  refs.cardContainer2.innerHTML = markup;
+function renderHero (hero) {
+    console.log(hero)
+   
+const markup = `<div class="card">
+<div class="card-img-top">
+  <img src="${hero.images.sm}" alt="{{name}}" style="width:160px;height:240px">
+</div>
+<div class="card-body">
+  <h2 class="card-title">Имя:${hero.biography.fullName}</h2>
+
+  <p class="card-text"><b>Умения</b></p>
+  <ul class="list-group">
+    <li class="list-group-item">{{ability.name}}</li>
+  </ul>
+</div>`;
+heroBoxElem.innerHTML = markup;
 }
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
-// =======================================================
 
-refs.form3.addEventListener('submit', e => {
-  e.preventDefault();
-  const hero = e.target.elements.query.value;
-  searchHero(hero).then(objHero => {
-    renderHero(objHero);
-  });
-});
 
-function renderHero(hero) {
-  console.log(hero);
-  const markup = `
+const refs = {
+    quotesFormEl: document.querySelector('.js-search-form1'),
+    quotesBox: document.querySelector('.js-card-container1'),
+
+}
+refs.quotesFormEl.addEventListener('submit', onRandonQuotes)
+
+
+function onRandonQuotes (event) {
+    event.preventDefault();
+    getQuotes().then(response => {
+        renderQuotes (response)
+    });
+}
+
+function renderQuotes (quote) {
+    console.log(quote);
+    const markup = `
     <div class="card">
-        <div class="card-img-top">
-          <img src="${hero.images.lg}" alt="" style="width:160px;height:240px">
-        </div>
-        <div class="card-body">
-          <h2 class="card-title">Имя: ${hero.biography.fullName}</h2>
-        </div>
-      </div>
-  `;
-
-  refs.cardContainer3.innerHTML = markup;
+    <div class="card-body">
+    <p><q>${quote.content}</q> - <h3>${quote.originator.name}</h3></p>
+  </div>
+</div>
+   `
+   refs.quotesBox.innerHTML = markup;
 }
